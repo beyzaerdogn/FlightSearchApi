@@ -1,0 +1,162 @@
+package com.example.FlightApi.entities;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name="airports")
+public class Airport {// Airport Entity
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
+
+        @Column(nullable = false)
+        private String city;
+
+        // getters, setters, constructors...
+    }
+
+    // Flight Entity
+    @Entity
+    public class Flight1 {
+        private final String ist;
+        private final String jfk;
+        private final LocalDateTime now;
+        private final LocalDateTime localDateTime;
+        private final double v;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
+
+        @ManyToOne
+        @JoinColumn(name = "departure_airport_id", nullable = false)
+        private Airport departureAirport;
+
+        @ManyToOne
+        @JoinColumn(name = "arrival_airport_id", nullable = false)
+        private Airport arrivalAirport;
+
+        @Column(nullable = false)
+        private LocalDateTime departureDateTime;
+
+        @Column
+        private LocalDateTime returnDateTime;
+
+        @Column(nullable = false)
+        private BigDecimal price;
+
+        public Flight1(String ist, String jfk, LocalDateTime now, LocalDateTime localDateTime, double v) {
+            this.ist = ist;
+            this.jfk = jfk;
+            this.now = now;
+            this.localDateTime = localDateTime;
+            this.v = v;
+        }
+
+        public Flight1(String ist, String jfk, LocalDateTime now, LocalDateTime localDateTime, double v, String ist1, String jfk1, LocalDateTime now1, LocalDateTime localDateTime1, double v1) {
+            this.ist = ist1;
+            this.jfk = jfk1;
+            this.now = now1;
+            this.localDateTime = localDateTime1;
+            this.v = v1;
+        }
+
+        public void setId(Long id) {
+        }
+
+        // getters, setters, constructors...
+    }
+
+
+
+package com.example.FlightApi.entities;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name="airports")
+public class Airport {// Airport Entity
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
+
+        @Column(nullable = false)
+        private String city;
+
+        // getters, setters, constructors...
+    }
+
+    // Flight Entity
+    @Entity
+    public class Flight1 {
+        private final String ist;
+        private final String jfk;
+        private final LocalDateTime now;
+        private final LocalDateTime localDateTime;
+        private final double v;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
+
+        @ManyToOne
+        @JoinColumn(name = "departure_airport_id", nullable = false)
+        private Airport departureAirport;
+
+        @ManyToOne
+        @JoinColumn(name = "arrival_airport_id", nullable = false)
+        private Airport arrivalAirport;
+
+        @Column(nullable = false)
+        private LocalDateTime departureDateTime;
+
+        @Column
+        private LocalDateTime returnDateTime;
+
+        @Column(nullable = false)
+        private BigDecimal price;
+
+        public Flight1(String ist, String jfk, LocalDateTime now, LocalDateTime localDateTime, double v) {
+            this.ist = ist;
+            this.jfk = jfk;
+            this.now = now;
+            this.localDateTime = localDateTime;
+            this.v = v;
+        }
+
+        public Flight1(String ist, String jfk, LocalDateTime now, LocalDateTime localDateTime, double v, String ist1, String jfk1, LocalDateTime now1, LocalDateTime localDateTime1, double v1) {
+            this.ist = ist1;
+            this.jfk = jfk1;
+            this.now = now1;
+            this.localDateTime = localDateTime1;
+            this.v = v1;
+        }
+
+        public void setId(Long id) {
+        }
+
+        // getters, setters, constructors...
+    }
+
+
+
