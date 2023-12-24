@@ -1,0 +1,54 @@
+package com.example.FlightApi.Controller;
+
+import com.example.FlightApi.entities.Flight1;
+import com.example.FlightApi.entities.FlightRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/flights")
+public class FlightController {
+
+    @Autowired
+    private FlightRepository flightRepository;
+
+    @GetMapping
+    public List<Flight1> getAllFlights() {
+        return flightRepository.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Flight1> getFlightById(@PathVariable Long id) {
+        return flightRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public ResponseEntity<Flight1> createFlight(@RequestBody Flight1 flight) {
+        Flight1 createdFlight = flightRepository.save(flight);
+        return ResponseEntity.ok(createdFlight);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Flight1> updateFlight(@PathVariable Long id, @RequestBody Flight1 flight) {
+        if (!flightRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        flight.setId(id);
+        Flight1 updatedFlight = flightRepository.save(flight);
+        return ResponseEntity.ok(updatedFlight);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteFlight(@PathVariable Long id) {
+        if (!flightRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        flightRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+}
